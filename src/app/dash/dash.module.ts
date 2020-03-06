@@ -6,10 +6,11 @@ import { DashComponent } from './dash.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SectionComponent } from './section/section.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
-  declarations: [DashComponent, HeaderComponent, FooterComponent, SectionComponent],
+  declarations: [DashComponent, HeaderComponent, FooterComponent, SectionComponent, ProductsComponent],
   imports: [
     CommonModule,
     DashRoutingModule
