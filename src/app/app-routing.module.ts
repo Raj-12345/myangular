@@ -5,7 +5,6 @@ import { SignupModule } from './signup/signup.module';
 import { DashComponent } from './dash/dash.component';
 import { DashModule } from './dash/dash.module';
 
-
 const routes: Routes = [
   {
     path: '',

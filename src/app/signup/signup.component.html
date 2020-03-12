@@ -13,25 +13,31 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign Up</h5>
-            <form class="form-signin">
-              <div class="form-label-group">
-                <input type="text" id="inputfirstname" class="form-control" placeholder="First Name" required autofocus>
+            <form class="form-signin"   [formGroup]='signup' (ngSubmit)="postData(signup)">
+             
+              <div class="form-group">
+                <input type="text" id="inputfirstname"  formControlName="firstname"   class="form-control" placeholder="First Name" required>
+      
+                  <div *ngIf="firstName.errors.required">First Name is required</div>
+                  <div *ngIf = "firstName.hasError('minlength') && !firstName.hasError('required')" class = "alert alert-danger">
+                    <span>a gaya</span>
+                  </div> 
               </div>
               <br>
 
               <div class="form-label-group">
-                <input type="text" id="inputlastname" class="form-control" placeholder="Last Name" required autofocus>
+                <input type="text" id="inputlastname"  formControlName="lastname" class="form-control" placeholder="Last Name" >
               </div>
               <br>
 
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input type="email" id="inputEmail"  formControlName="email" class="form-control" placeholder="Email address">
 
               </div>
               <br>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputPassword" formControlName="password" class="form-control" placeholder="Password" required>
 
               </div>
               <br>
@@ -39,7 +45,7 @@
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
-              <button class="btn btn-sm btn-primary  bts btn-block text-uppercase" type="submit" ><a routerLink="/login">Sign Up</a></button>
+             <input type="submit" value="submit"  [disabled]="!signup.valid" >
               <hr class="my-4">
 
 
