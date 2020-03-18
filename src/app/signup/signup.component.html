@@ -13,43 +13,41 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign Up</h5>
-            <form class="form-signin"   [formGroup]='signup' (ngSubmit)="postData(signup)">
-             
-              <div class="form-group">
-                <input type="text" id="inputfirstname"  formControlName="firstname"   class="form-control" placeholder="First Name" required>
-      
-                  <div *ngIf="firstName.errors.required">First Name is required</div>
-                  <div *ngIf = "firstName.hasError('minlength') && !firstName.hasError('required')" class = "alert alert-danger">
-                    <span>a gaya</span>
-                  </div> 
+            <form class="form-signin"   [formGroup]='signup' (ngSubmit)="formstoreusers(signup)">
+              <div class="form-label-group">
+                <input type="text" id="inputfirstname"  formControlName="user_name"  [ngClass]="{'is-invalid':signup.get('user_name').touched && signup.get('user_name').invalid}" class="form-control" placeholder="User Name" class="form-control">
+              <div  *ngIf="signup.get('user_name').touched && signup.get('user_name').invalid"   class="invalid-feedback">
+                <div *ngIf="signup.get('user_name').errors.required">first Name is required</div>
+                <div *ngIf="signup.get('user_name').errors.minlength">first Name shuld be atleat 3 char</div>
+              </div>
+              </div>
+               <br>
+
+    
+
+              <div class="form-label-group">
+                <input type="text" id="inputEmail"  formControlName="user_email"  [ngClass]="{'is-invalid':signup.get('user_email').touched && signup.get('user_email').invalid}"   class="form-control"      placeholder="Email address">
+                <div   *ngIf="signup.get('user_email').touched && signup.get('user_email').invalid"    class="invalid-feedback">
+                  <div  *ngIf="signup.get('user_email').errors.required" >email Name is required</div>
+                  <div  *ngIf="signup.get('user_email').errors.email" >email is not valid</div>
+              </div>
               </div>
               <br>
 
               <div class="form-label-group">
-                <input type="text" id="inputlastname"  formControlName="lastname" class="form-control" placeholder="Last Name" >
+                <input type="password" id="inputPassword" formControlName="user_password"      [ngClass]="{'is-invalid':signup.get('user_password').touched && signup.get('user_password').invalid}" class="form-control" placeholder="Password" >
+               <div  *ngIf="signup.get('user_password').touched && signup.get('user_password').invalid" class="invalid-feedback">
+                <div  *ngIf="signup.get('user_password').errors.required" >password  is required</div>
+                <div  *ngIf="signup.get('user_password').errors.minlength" >password is of atleat 5</div>
               </div>
-              <br>
-
-              <div class="form-label-group">
-                <input type="email" id="inputEmail"  formControlName="email" class="form-control" placeholder="Email address">
-
-              </div>
-              <br>
-
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" formControlName="password" class="form-control" placeholder="Password" required>
-
-              </div>
-              <br>
-              <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Remember password</label>
-              </div>
-             <input type="submit" value="submit"  [disabled]="!signup.valid" >
+          </div>
+             <br>
+             <input type="submit" value="submit" >
               <hr class="my-4">
 
 
             </form>
+            <button class="btn btn-primary" routerLink="/login">Login</button>
           </div>
         </div>
       </div>

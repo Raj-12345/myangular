@@ -1,44 +1,39 @@
 
 <app-header>
 </app-header>
-
-
-
+<section>
+<div >
+  <button class="btn btn-primary float-right"><a routerLink="/dash/addproducts"> Add  Products</a></button>
 
 <table class="table table-dark">
     <thead>
       <tr>
-        <th scope="col">No</th>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th>
+        <th scope="col">Product Id</th>
+       
+        <th scope="col">Product Name</th>
+        <th scope="col">Product Desc</th>
+        <th scope="col">User Id</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">{{products[0].id}}</th>
-        <td>{{products[0].name}}</td>
-        <td>{{products[0].price}}</td>
     
-      </tr>
-      <tr>
-        <th scope="row">{{products[1].id}}</th>
-        <td>{{products[1].name}}</td>
-        <td>{{products[1].price}}</td>
-      </tr>
-      <tr>
-        <th scope="row">{{products[2].id}}</th>
-        <td>{{products[2].name}}</td>
-        <td>{{products[2].price}}</td>
-      </tr>
-
-      <tr>
-        <th scope="row">{{products[3].id}}</th>
-        <td>{{products[3].name}}</td>
-        <td>{{products[3].price}}</td>
-      </tr>
+        <tr *ngFor="let product of products.data; let i = index">
+          <td> {{ product._id }} </td>
+          <td> {{ product.product_name}} </td>
+          <td> {{ product.product_desc }}</td>
+          <td> {{ product.user_id }}</td>
+          <td><button type="button" class="btn btn-danger">View</button>
+            <button type="button" class="btn btn-warning" (click)="edit(product._id)"   >Edit</button>
+            <button type="button" class="btn btn-info"  (click)="delete(product._id)">Delete</button></td>
+          </tr>
+      
 
     </tbody>
   </table>
+</div>
+</section>
+
+
 
 
 <app-footer>

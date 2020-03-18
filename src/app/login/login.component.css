@@ -1,6 +1,7 @@
 body {
-  padding-top: 50px;
+  padding-top: 100px;
   padding-bottom: 50px;
+  height:670px;
   background: #8360c3;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -8,7 +9,7 @@ background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, F
 }
 .bts
 {
-  margin-top: 5px;
+  margin-top: 2px;
   margin-left:140px;
 
 }
@@ -19,6 +20,7 @@ background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, F
 }
 .btfp
 {
+  margin-top: 4px;
   margin-left:100px;
 
 }
@@ -26,4 +28,15 @@ background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, F
 a
 {
   color: white;
+}
+#forgetp
+{
+  margin-top: 4px;
+margin-left:120px;
+}
+#signup
+{
+  margin-top: 4px;
+  margin-left:150px;
+
 }

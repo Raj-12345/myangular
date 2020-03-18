@@ -14,7 +14,4 @@ a{
 {
 width:40%;
 }
-input.ng-invalid.ng-touched
-{
-  border-color: red;  
-}
+

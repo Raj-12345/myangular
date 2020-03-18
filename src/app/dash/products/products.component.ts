@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import {FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms'
+import{MyserviceService} from '../../services/myservice.service';
+import{ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -7,20 +11,100 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  public products:Object=[ 
-    { id:"1",name:"cpu",price:"200"},
-  { id:"2",name:"mouse",price:"200"},
-  { id:"3",name:"keywords",price:"200"},
-  { id:"4",name:"bottal",price:"200"},
-  { id:"5",name:"ram",price:"200"},
-  { id:"6",name:"cup",price:"200"},
-  { id:"7",name:"pen",price:"200"},
-];
+constructor( private MyserviceServices:MyserviceService,private toaster:ToastrService,private router:Router)
+{
 
-  constructor() { }
+}
 
-  ngOnInit(): void {
-  }
+products:any;
+
+      
+
+getProducts =()=> {
+  this.MyserviceServices.getProducts().subscribe((res)=>
+  {   
+
+    this.products=res; 
+    console.log(this.products);
+   })
+  
+
+    }
+    delete(_id:any)
+    {
+      this.deleteProducts(_id);
+      console.log(' yaha a ya h 1');
+    }
+
+deleteProducts=(_id)=>
+    {
+      this.MyserviceServices.deleteProducts(_id).subscribe((res)=>
+      {
+        console.log(res);  
+        console.log('yaha a ya 2');
+               this .showToaster(res);      
+      }
+      ,(error)=>
+      {
+        console.log('yaha a ya 2 error');
+        console.log(error);
+      }
+      )
+ 
+    }
+
+
+    showToaster(res)
+    {
+
+     console.log(res);
+     if(res.status=='success')
+     {
+      
+      this.toaster.success(res.message,res.status);
+
+      this.MyserviceServices.getProducts().subscribe((res)=>
+      {   
+ 
+        if(res.status=="success")
+        {
+       
+          this.products=res;
+        }
+      
+        
+       })
+      
+     }
+     else
+     {
+     this.toaster.warning(res.message,res.status);
+     }
+      
+    }
+
+
+
+
+
+
+
+
+
+edit(_id)
+{
+console.log(_id);
+this.router.navigateByUrl('/dash/addproducts/'+_id);
+}
+  
+
+
+ngOnInit(): void {
+  
+this.getProducts();
+              }
+           
+  
 
 }
 

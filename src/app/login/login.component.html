@@ -13,31 +13,35 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Log In</h5>
-            <form class="form-signin">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputEmail">Email address</label>
+            <form class="form-signin" [formGroup]='login' (ngSubmit)="loginData(login)">
+                   <div class="form-label-group"  >
+              <input type="text" id="inputemail"  formControlName="email"  [ngClass]="{'is-invalid':login.get('email').touched && login.get('email').invalid}" class="form-control" placeholder="Enter Email" class="form-control">
+              <div  *ngIf="login.get('email').touched && login.get('email').invalid"   class="invalid-feedback">
+                <div *ngIf="login.get('email').errors.required">Email  is required</div>
+                <div *ngIf="login.get('email').errors.email">Email is not vaild</div>
               </div>
+              </div>
+               <br>
 
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <label for="inputPassword">Password</label>
+               <div class="form-label-group"> 
+                <input type="password" id="inputPassword" formControlName="password"      [ngClass]="{'is-invalid':login.get('password').touched && login.get('password').invalid}" class="form-control" placeholder="Password" >
+               <div  *ngIf="login.get('password').touched && login.get('password').invalid" class="invalid-feedback">
+                <div  *ngIf="login.get('password').errors.required" >password  is required</div>
+                <div  *ngIf="login.get('password').errors.minlength" >password is of atleat 5</div>
               </div>
-
-              <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Remember password</label>
-              </div>
-              <button class="btn btn-sm  btl btn-primary text-uppercase" type="submit"><a routerLink="/dash">Log in</a></button>
-              <hr class="my-4">
-              <button class="btn btn-primary btn-sm btn-google btfp  text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Forget Password</button><br>
-              <button class="btn btn-primary btn-sm btn-facebook  bts  text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i><a routerLink="/signup">Sign up</a></button>
+               </div>
+              <br>
+              
+              <input  class="btn-primary"  type="submit" value="Log In">
             </form>
+            <button class="btn-primary" id="forgetp">Forget Password</button><br>
+       <a routerLink="/signup"> <button class="btn-primary" id="signup">SignUp</button></a>
           </div>
         </div>
       </div>
     </div>
   </div>
+ 
 </body>
 </html>
 

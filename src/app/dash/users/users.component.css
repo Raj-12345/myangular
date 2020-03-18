@@ -1,7 +1,7 @@
 table
 {
     margin:80px auto;
-    width:80%;
+    width:60%;
 }
 a
 {
@@ -18,9 +18,19 @@ button
 {
     margin-left:4px;
 }
+h5
+{
+    color:red;
+}
+p
+{
+    color:black;
+}
 section
 {
     padding-bottom: 180px;
+   
+    height:auto;
     width:100%;
     border:1px solid red;
 }

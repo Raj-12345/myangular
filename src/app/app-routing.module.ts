@@ -4,7 +4,7 @@ import { LoginModule } from './login/login.module';
 import { SignupModule } from './signup/signup.module';
 import { DashComponent } from './dash/dash.component';
 import { DashModule } from './dash/dash.module';
-
+import{AuthService} from './services/auth.service'
 const routes: Routes = [
   {
     path: '',
@@ -13,11 +13,8 @@ const routes: Routes = [
   },
 
   {
-   
-
     path: 'login',
     loadChildren: () => (import('./login/login.module').then(m =>m.LoginModule))
-   
   },
   {
 
@@ -28,7 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'dash',
-    loadChildren: () => (import('./dash/dash.module').then(m => DashModule))
+    loadChildren: () => (import('./dash/dash.module').then(m => DashModule)),
+    canActivate:[AuthService]
   }
 ];
 

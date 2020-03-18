@@ -1,0 +1,145 @@
+
+<app-header></app-header>
+
+  <div class="container" *ngIf="flag; else elseblock">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    
+            <form   [formGroup]='add' (ngSubmit)="formstoreusers(add)">
+              <div class="form-label-group">
+                <input type="text" id="inputfirstname"  formControlName="user_name"  [ngClass]="{'is-invalid':add.get('user_name').touched && add.get('user_name').invalid}" class="form-control" placeholder="User Name" class="form-control">
+              <div  *ngIf="add.get('user_name').touched && add.get('user_name').invalid"   class="invalid-feedback">
+                <div *ngIf="add.get('user_name').errors.required">Name is required</div>
+                <div *ngIf="add.get('user_name').errors.minlength">first Name shuld be atleat 3 char</div>
+              </div>
+              </div>
+               <br>
+
+           
+
+              <div class="form-label-group">
+                <input type="text" id="inputEmail"  formControlName="user_email"  [ngClass]="{'is-invalid':add.get('user_email').touched && add.get('user_email').invalid}"   class="form-control"      placeholder="Email address">
+                <div   *ngIf="add.get('user_email').touched && add.get('user_email').invalid"    class="invalid-feedback">
+                  <div  *ngIf="add.get('user_email').errors.required" >email Name is required</div>
+                  <div  *ngIf="add.get('user_email').errors.email" >email is not valid</div>
+              </div>
+              </div>
+              <br>
+
+              <div class="form-label-group">
+                <input type="text" id="inputPassword" formControlName="user_password"      [ngClass]="{'is-invalid':add.get('user_password').touched && add.get('user_password').invalid}" class="form-control" placeholder="Password" >
+               <div  *ngIf="add.get('user_password').touched && add.get('user_password').invalid" class="invalid-feedback">
+                <div  *ngIf="add.get('user_password').errors.required" >password  is required</div>
+                <div  *ngIf="add.get('user_password').errors.minlength" >password is of atleat 5</div>
+              </div>
+          </div>
+             <br>
+             <input type="submit" value="submit" >
+              <hr class="my-4">
+
+
+            </form>
+       
+             </div>
+        </div>
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+<ng-template #elseblock>
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+  <h1 >Edit Form....</h1>
+          <form   [formGroup]='edit' (ngSubmit)="formupdateusers(edit)">
+            <div class="form-label-group">
+              User_name
+              <input type="text" id="inputfirstname"  formControlName="user_name"  [ngClass]="{'is-invalid':edit.get('user_name').touched && edit.get('user_name').invalid}" class="form-control" placeholder="User Name" class="form-control">
+            <div  *ngIf="edit.get('user_name').touched && edit.get('user_name').invalid"   class="invalid-feedback">
+              <div *ngIf="edit.get('user_name').errors.required">Name is required</div>
+              <div *ngIf="edit.get('user_name').errors.minlength">first Name shuld be atleat 3 char</div>
+            </div>
+            </div>
+             <br>
+
+         
+
+            <div class="form-label-group">
+              User_Email
+              <input type="text" id="inputEmail"  formControlName="user_email"  [ngClass]="{'is-invalid':edit.get('user_email').touched && edit.get('user_email').invalid}"   class="form-control"      placeholder="Email address">
+              <div   *ngIf="edit.get('user_email').touched && edit.get('user_email').invalid"    class="invalid-feedback">
+                <div  *ngIf="edit.get('user_email').errors.required" >email Name is required</div>
+                <div  *ngIf="edit.get('user_email').errors.email" >email is not valid</div>
+            </div>
+            </div>
+            <br>
+
+            <div class="form-label-group">
+              User_Password
+              <input type="text" id="inputPassword" formControlName="user_password"      [ngClass]="{'is-invalid':edit.get('user_password').touched && edit.get('user_password').invalid}" class="form-control" placeholder="Password" >
+             <div  *ngIf="edit.get('user_password').touched && edit.get('user_password').invalid" class="invalid-feedback">
+              <div  *ngIf="edit.get('user_password').errors.required" >password  is required</div>
+              <div  *ngIf="edit.get('user_password').errors.minlength" >password is of atleat 5</div>
+            </div>
+        </div>
+           <br>
+           <input type="submit" value="update" >
+            <hr class="my-4">
+
+
+          </form>
+     
+           </div>
+      </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<app-footer></app-footer>

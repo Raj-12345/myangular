@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import   {FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import {MyserviceService} from '../services/myservice.service'
+import{ToastrService} from 'ngx-toastr'
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -8,46 +10,82 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-signup:FormGroup;
-firstname:String="";
-lastname:String="";
-email:String="";
-password:String="";
 
-
-  constructor( private formbulider:FormBuilder,private router : Router)
-   {
+  signup=new  FormGroup({
+    user_name:new FormControl('',[Validators.required,Validators.minLength(3)]),
+    user_email:new FormControl('',[Validators.required,Validators.email]),
+    user_password:new FormControl('',[Validators.required,Validators.minLength(5)])
    
-       this.signup=formbulider.group({
-            firstname:['',[Validators.required,Validators.minLength(3)]],
-            lastname:['',[Validators.required,Validators.minLength(3)]],
-            email:['',[Validators.required,Validators.email]],
-             password:['',Validators.required],
+   });
+  
+    constructor(private formbulider:FormBuilder,private MyserviceServices:MyserviceService,private toaster:ToastrService,private router:Router) 
+    { }
+       
+   
+              
+    
+    formstoreusers(signup:any) {
+   
+       if(this.signup.invalid==false)
+     {
+  
+      var user={
+      user_name:signup.value.user_name,
+      user_email:signup.value.user_email,
+      user_password:signup.value.user_password
+      }
 
-       });
-
-    };
-
-
-get firstName(){return this.signup.get('firstname');}
-get lastName(){return this.signup.get('lastname');}
-get Email(){return this.signup.get('email');}
-get Password(){return this.signup.get('password');}
-
-postData(signup:any) {
-
-  console.warn(signup);
-  this.firstname=signup.value.firstname;
-  this.lastname=signup.value.lastname;
-  this.email=signup.value.email;
-  this.password=signup.value.password;
-
-  this.router.navigateByUrl('/login')
-                     }
-
-
-  ngOnInit(): void {
-  }
+this.storeUsers(user);
+    }
+    else
+    {
+    
+      alert('please provide all  details');
+    }
+     
+                         }
 
 
-}
+             storeUsers =(user)=> {
+                          this.MyserviceServices.storeUsers(user).subscribe((res)=>
+                          {   
+                                       
+                                       this.showToaster(res);    
+                           },(error)=>{
+                            console.log(error);
+                           }
+                           )
+                        
+                        }   
+
+
+                        showToaster(res)
+                        {
+                          console.log(res);
+                                     if(res.status=='success')
+                                     {
+                                      this.toaster.success(res.message,res.status);
+                                       this.router.navigateByUrl('/login');
+                                     }
+                                     else
+                                     {
+                                     this.toaster.warning(res.message,res.status);
+                                     }
+                        }
+                  
+                  
+    
+    
+      ngOnInit(): void {
+    
+      
+        
+      
+    
+       }
+    
+    
+    
+    }
+ 
+  
